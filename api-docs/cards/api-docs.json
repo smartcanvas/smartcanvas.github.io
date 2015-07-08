@@ -1,0 +1,35 @@
+{
+  "apiVersion": "1.0.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://smartcanvas.github.io/api-docs",
+  "apis": [
+    {
+      "path": "/cards",
+      "description": "Manage Cards inside Smart Canvas"
+    }
+  ],
+  "authorizations": {
+    "x-client-id": {
+      "type": "apiKey",
+      "passAs": "header",
+      "keyname": "x-client-id"
+    },
+    "x-access-token": {
+      "type": "apiKey",
+      "passAs": "header",
+      "keyname": "x-access-token"
+    }
+  },
+  "info": {
+    "title": "Card API",
+    "description": "Card is the basic representation for content inside Smart Canvas. Every piece of content hosted in the product was previously cardified. This API allows you to create and get cards from Smart Canvas. <br/><br/>
+    Scopes related with this resource:<br>
+    <li><b>smartcanvas.cards.read</b>: can read cards from Smart Canvas</li>
+    <li><b>smartcanvas.cards.write</b>: can create a new card inside Smart Canvas. Can delete or update your own cards.</li>
+    <li><b>smartcanvas.cards.moderate</b>: can moderate cards from Smart Canvas, can delete or update any card.</li>",
+    "termsOfServiceUrl": "http://dev.smartcanvas.com/api-portal/content/terms-and-conditions",
+    "contact": "api@smartcanvas.com",
+    "license": "",
+    "licenseUrl": ""
+  }
+}
