@@ -1,15 +1,19 @@
 {
   "swaggerVersion": "1.2",
-  "basePath": "http://api.smartcanvas.com/v1/greeting",
+  "basePath": "http://api.smartcanvas.com/card/v1",
+  "resourcePath": "/cards",
+  "produces": [
+    "application/json"
+  ],
   "apis": [
     {
-      "path": "/hello/{subject}",
+      "path": "/cards",
       "operations": [
         {
-          "method": "GET",
-          "summary": "Greet our subject with hello!",
-          "type": "string",
-          "nickname": "helloSubject",
+          "method": "POST",
+          "summary": "Create a Card",
+          "type": "Card",
+          "nickname": "saveCard",
           "parameters": [
             {
               "name": "subject",
@@ -23,5 +27,362 @@
       ]
     }
   ],
-  "models": {}
+  "models": {
+    "Card": {
+      "id": "Card",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unique identifier for a card in Smart Canvas"
+        },
+        "mnemonic": {
+          "type": "string",
+          "description": "Card mnemonic. The mnemonic is used to compose the URL of the card."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the card"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Summary of the card"
+        },
+        "content": {
+          "type": "string",
+          "description": "Content of the card"
+        },
+        "community": {
+          "type": "Community",
+          "description": "The community that this card belongs to"
+        },
+        "createDate": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Timestamp of this card creation"
+        },
+        "updateDate": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Timestamp of this card creation"
+        },
+        "publishDate": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Timestamp of this card publishing"
+        },
+        "expirationDate": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Timestamp of this card expiration"
+        },
+        "isAutoModerated": {
+          "type": "boolean",
+          "description": "Indicates if this card is auto-moderated or not"
+        },
+        "jsonExtendedData": {
+          "type": "string",
+          "description": "JSON data with extra information saved with this card"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Categories (tags) associated to this card"
+        },
+        "meta-tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Meta-tags associated to this card. Meta-tags are intented to be used by system / API only, not visible for end-users.\n"
+        },
+        "author": {
+          "type": "Author",
+          "description": "Author of this card"
+        },
+        "contentProvider": {
+          "type": "ContentProvider",
+          "description": "Information about the original source of this card"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "Attachment"
+          },
+          "description": "Attachments contained in this card"
+        },
+        "userActivities": {
+          "type": "UserActivity",
+          "readOnly": true,
+          "description": "Information about user activities such as like, share etc"
+        },
+        "permission": {
+          "type": "Permission",
+          "description": "Security model data, includes security level and user / group permissions"
+        },
+        "locale": {
+          "type": "Locale",
+          "description": "Locale and i18n information"
+        }
+      }
+    },
+    "Author": {
+      "id": "Author",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Author identification in Smart Canvas. That's a Person ID or email. If not provided, this author\ndoesn't exist in Smart Canvas (but it's still valid).\n"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Author display name"
+        },
+        "imageURL": {
+          "type": "string",
+          "description": "Author image URL"
+        }
+      }
+    },
+    "Community": {
+      "id": "Community",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Community ID or mnemonic"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User-friendly community display name"
+        }
+      }
+    },
+    "ContentProvider": {
+      "id": "ContentProvider",
+      "properties": {
+        "providerId": {
+          "type": "string",
+          "description": "Identifies the provider (ID or mnemonic), the original source of this content. Example = googleplus"
+        },
+        "providerContentId": {
+          "type": "string",
+          "description": "Identifies this content on its original source"
+        },
+        "providerContentURL": {
+          "type": "string",
+          "description": "Original URL of this content on its provider"
+        },
+        "providerUserId": {
+          "type": "string",
+          "description": "The identifier of the author on the provider"
+        }
+      }
+    },
+    "Attachment": {
+      "id": "Attachment",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of this attachment (*TODO review possible values)",
+          "default": "photo",
+          "enum": [
+            "photo",
+            "article",
+            "video",
+            "drive"
+          ]
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of this attachment"
+        },
+        "contentURL": {
+          "type": "string",
+          "description": "Content URL for this attachment"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "Image"
+          },
+          "description": "Images contained in this attachment"
+        },
+        "embedURL": {
+          "type": "string",
+          "format": "Embed URL for this attachment (* TODO - o que eh isso?)"
+        },
+        "jsonExtendedData": {
+          "type": "string",
+          "description": "JSON data with extra information saved with this attachment"
+        }
+      }
+    },
+    "Image": {
+      "id": "Image",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image URL"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of this image"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Image height"
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Image width"
+        },
+        "originalUrl": {
+          "type": "string",
+          "description": "Original image URL on the content provider"
+        }
+      }
+    },
+    "Activity": {
+      "id": "Activity",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "type of this user activity (example = like, dislike etc)"
+        },
+        "counter": {
+          "type": "integer",
+          "format": "int32",
+          "description": "how many of this activities this card has"
+        },
+        "target": {
+          "type": "string",
+          "description": "optional value that represents the target of this action. Examples = facebook, twitter, linkedin (for sharing)"
+        }
+      }
+    },
+    "UserActivity": {
+      "id": "UserActivity",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "type of this user activity (example = like, dislike etc)"
+        },
+        "target": {
+          "type": "string",
+          "description": "optional value that represents the target of this action. Examples = facebook, twitter, linkedin (for sharing)"
+        }
+      }
+    },
+    "Comment": {
+      "id": "Comment",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Comment ID"
+        },
+        "personId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Person ID (*TODO se email vai virar chave, esse campo não faz mais sentido)"
+        },
+        "personEmail": {
+          "type": "string",
+          "description": "Person email"
+        },
+        "text": {
+          "type": "string",
+          "description": "Comment text (content)"
+        },
+        "createDate": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Timestamp of this comment creation"
+        }
+      }
+    },
+    "Permission": {
+      "id": "Permission",
+      "properties": {
+        "securityLevel": {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0,
+          "maximum": 99999999,
+          "default": 0
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Locale": {
+      "id": "Locale",
+      "properties": {
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "region": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "geoCode": {
+          "type": "string",
+          "description": "Geo code from where this card was created (*TODO talvez move-lo para a raiz, e mudar de nome)"
+        },
+        "address": {
+          "type": "string",
+          "description": "Address from where this card was created"
+        },
+        "placeName": {
+          "type": "string",
+          "description": "Name of the place from where this card was created"
+        }
+      }
+    },
+    "BasicError": {
+      "id": "BasicError",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ErrorWithFields": {
+      "id": "ErrorWithFields",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "string"
+        }
+      }
+    }
+  }
 }
