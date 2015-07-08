@@ -3,7 +3,7 @@
   "basePath": "http://api.smartcanvas.com/v1/greeting",
   "apis": [
     {
-      "path": "/hello/{subject}",
+      "path": "/hello2/{subject}",
       "operations": [
         {
           "method": "GET",
