@@ -12,15 +12,44 @@
         {
           "method": "POST",
           "summary": "Create a Card",
+          "notes": "Creates a new card inside Smart Canvas.<br/><br/>This operation requires the scopes: 'smartcanvas.cards.write', 'smartcanvas.cards.moderate'. If 'isAutoModerated' attribute is defined as 'true', you must have 'smartcanvas.cards.moderate' privilege.",
           "type": "Card",
           "nickname": "saveCard",
           "parameters": [
             {
-              "name": "subject",
-              "description": "The subject to be greeted.",
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
               "required": true,
-              "type": "string",
-              "paramType": "path"
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token. The person must have publisher or admin privileges.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "card",
+              "description": "The card to be created",
+              "required": true,
+              "type": "Card",
+              "paramType": "body"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
         }
@@ -53,7 +82,7 @@
           "description": "Content of the card"
         },
         "community": {
-          "type": "Community",
+          "$ref": "Community",
           "description": "The community that this card belongs to"
         },
         "createDate": {
@@ -99,31 +128,31 @@
           "description": "Meta-tags associated to this card. Meta-tags are intented to be used by system / API only, not visible for end-users.\n"
         },
         "author": {
-          "type": "Author",
+          "$ref": "Author",
           "description": "Author of this card"
         },
         "contentProvider": {
-          "type": "ContentProvider",
+          "$ref": "ContentProvider",
           "description": "Information about the original source of this card"
         },
         "attachments": {
           "type": "array",
           "items": {
-            "type": "Attachment"
+            "$ref": "Attachment"
           },
           "description": "Attachments contained in this card"
         },
         "userActivities": {
-          "type": "UserActivity",
+          "$ref": "UserActivity",
           "readOnly": true,
           "description": "Information about user activities such as like, share etc"
         },
         "permission": {
-          "type": "Permission",
+          "$ref": "Permission",
           "description": "Security model data, includes security level and user / group permissions"
         },
         "locale": {
-          "type": "Locale",
+          "$ref": "Locale",
           "description": "Locale and i18n information"
         }
       }
@@ -204,7 +233,7 @@
         "images": {
           "type": "array",
           "items": {
-            "type": "Image"
+            "$ref": "Image"
           },
           "description": "Images contained in this attachment"
         },
