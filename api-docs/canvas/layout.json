@@ -1,0 +1,1200 @@
+{
+  "swaggerVersion": "1.2",
+  "basePath": "http://api.smartcanvas.com/canvas/v1",
+  "produces": [
+    "application/json"
+  ],
+  "apis": [
+    {
+      "path": "/buckets",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Create a Bucket",
+          "notes": "Creates a new bucket inside Smart Canvas. <br/><br/>This operation requires the scopes: 'smartcanvas.canvas.write'.",
+          "type": "string",
+          "nickname": "saveBucket",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "query",
+              "description": "Bucket mnemonic",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "query",
+              "paramType": "query",
+              "description": "Query term or mnemonic to be used to get content for this bucket.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "contextPattern",
+              "paramType": "query",
+              "description": "Context pattern (regex) to which this bucket should be visible. Example = /highlights",
+              "required": true,
+              "type": "string"
+
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale for which this bucket should be visible. If ommited, will be visible to all locales.",
+              "required": false,
+              "type": "string"
+
+            },
+            {
+              "name": "pos",
+              "paramType": "query",
+              "description": "The position that this bucket should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the context.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "title",
+              "paramType": "query",
+              "description": "Bucket title. This value supports i18n.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "titleAlign",
+              "paramType": "query",
+              "description": "Bucket title alignment (center, right or left).",
+              "required": false,
+              "type": "string",
+              "enum": [
+                "center",
+                "right",
+                "left"
+              ]
+            },
+            {
+              "name": "bgcolor",
+              "paramType": "query",
+              "description": "Background color (example = #00FAB3)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name":"bgimage",
+              "paramType": "query",
+              "description": "Background image (URL) for this bucket",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "canvasStrategy",
+              "paramType": "query",
+              "description": "Bucket Canvas mnemonic to render this bucket",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "highlightFirstCard",
+              "paramType": "query",
+              "type": "boolean",
+              "description": "If the first card should be highlighted or not",
+              "required": false,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "limit",
+              "paramType": "query",
+              "description": "Maximum number of cards to be shown in this bucket.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "jsonExtendedData",
+              "paramType": "query",
+              "description": "Extended data (JSON format) for this bucket",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "GET",
+          "summary": "List Buckets",
+          "notes": "Returns the list of buckets of a specific context",
+          "type": "array[Bucket]",
+          "nickname": "listBuckets",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "context",
+              "paramType": "query",
+              "description": "Context to be used as filter",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale to be used as filter",
+              "required": false,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/buckets/{id}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch a Bucket",
+          "notes": "Returns a bucket by its mnemonic",
+          "type": "Bucket",
+          "nickname": "fetchBuckets",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Bucket mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "PUT",
+          "summary": "Update a Bucket",
+          "notes": "Updates a bucket inside Smart Canvas. This operation requires the scope 'smartcanvas.canvas.write'.",
+          "type": "string",
+          "nickname": "updateBucket",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Color palette mnemonic",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "query",
+              "paramType": "query",
+              "description": "Query term or mnemonic to be used to get content for this bucket.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "contextPattern",
+              "paramType": "query",
+              "description": "Context pattern (regex) to which this bucket should be visible. Example = /highlights",
+              "required": true,
+              "type": "string"
+
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale for which this bucket should be visible. If ommited, will be visible to all locales.",
+              "required": false,
+              "type": "string"
+
+            },
+            {
+              "name": "pos",
+              "paramType": "query",
+              "description": "The position that this bucket should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the context.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "title",
+              "paramType": "query",
+              "description": "Bucket title. This value supports i18n.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "titleAlign",
+              "paramType": "query",
+              "description": "Bucket title alignment (center, right or left).",
+              "required": false,
+              "type": "string",
+              "enum": [
+                "center",
+                "right",
+                "left"
+              ]
+            },
+            {
+              "name": "bgcolor",
+              "paramType": "query",
+              "description": "Background color (example = #00FAB3)",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name":"bgimage",
+              "paramType": "query",
+              "description": "Background image (URL) for this bucket",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "canvasStrategy",
+              "paramType": "query",
+              "description": "Bucket Canvas mnemonic to render this bucket",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "highlightFirstCard",
+              "paramType": "query",
+              "type": "boolean",
+              "description": "If the first card should be highlighted or not",
+              "required": false,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "limit",
+              "paramType": "query",
+              "description": "Maximum number of cards to be shown in this bucket.",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "jsonExtendedData",
+              "paramType": "query",
+              "description": "Extended data (JSON format) for this bucket",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Delete a Bucket",
+          "notes": "Delete a bucket from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "deletePalette",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Bucket mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/tabs",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Create a Tab",
+          "notes": "Creates a new tab inside Smart Canvas. <br/><br/>This operation requires the scopes: 'smartcanvas.canvas.write'.",
+          "type": "string",
+          "nickname": "saveTab",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "query",
+              "description": "Tab mnemonic",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "label",
+              "paramType": "query",
+              "description": "The label for this tab. This value supports i18n.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "pos",
+              "paramType": "query",
+              "description": "The position that this tab should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the tabs.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "The locale to which this tab should be created / redefined. If ommited, will be visible to all locales.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "buckets",
+              "paramType": "query",
+              "description": "List of bucket mnemonics related to this tab",
+              "required": true,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "jsonExtendedData",
+              "paramType": "query",
+              "description": "Extended data (JSON format) for this tab",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "GET",
+          "summary": "List Tabs",
+          "notes": "Returns the list of tabs for a specific locale",
+          "type": "array[Tab]",
+          "nickname": "listTabs",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale to be used as filter. If omitted, the default will be used.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/tabs/{id}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch a Tab",
+          "notes": "Returns a tab by its mnemonic",
+          "type": "Tab",
+          "nickname": "fetchTabs",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Tab mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "PUT",
+          "summary": "Update a Tab",
+          "notes": "Updates a tab inside Smart Canvas. This operation requires the scope 'smartcanvas.canvas.write'.",
+          "type": "string",
+          "nickname": "updateTab",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Tab mnemonic",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "label",
+              "paramType": "query",
+              "description": "The label for this tab. This value supports i18n.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "pos",
+              "paramType": "query",
+              "description": "The position that this tab should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the tabs.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "The locale to which this tab should be created / redefined. If ommited, will be visible to all locales.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "buckets",
+              "paramType": "query",
+              "description": "List of bucket mnemonics related to this tab",
+              "required": true,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "jsonExtendedData",
+              "paramType": "query",
+              "description": "Extended data (JSON format) for this tab",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Delete a Tab",
+          "notes": "Delete a tab from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "deleteTab",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Tab mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/actions",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Create an Action",
+          "notes": "Creates an action inside Smart Canvas. <br/><br/>This operation requires the scopes: 'smartcanvas.canvas.write'.",
+          "type": "string",
+          "nickname": "saveTab",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "query",
+              "description": "Action mnemonic",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "label",
+              "paramType": "query",
+              "description": "The label for this action. This value supports i18n.",
+              "required": true,
+              "type": "string"
+
+            },
+            {
+              "name": "contextPattern",
+              "paramType": "query",
+              "description": "Context pattern (regex) to which this action should be visible. Example = /highlights",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale for which this action should be visible. If omitted, this action will be visible to all locales",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "href",
+              "paramType": "query",
+              "description": "URI for this action",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "target",
+              "paramType": "query",
+              "description": "self or blank (action performed in the same window or a new one)",
+              "required": false,
+              "type": "string",
+              "enum": [
+                "self",
+                "blank"
+              ],
+              "defaultValue": "self"
+            },
+            {
+              "name": "pos",
+              "paramType": "query",
+              "description": "The position that this action should be placed. First position = 1. If omitted, this action will be appended to the end",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "roles",
+              "paramType": "query",
+              "description": "Comma-separated list of roles that will be allowed to see this action.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "jsonExtendedData",
+              "paramType": "query",
+              "description": "Extra information (JSON format) for this action",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "GET",
+          "summary": "List Actions",
+          "notes": "Returns the list of actions for a specific context and locale",
+          "type": "array[Action]",
+          "nickname": "listActions",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "context",
+              "paramType": "query",
+              "description": "Context to be used as filter",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale to be used as filter. If omitted, the default will be used.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/actions/{id}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch an Action",
+          "notes": "Returns an action by its mnemonic",
+          "type": "Action",
+          "nickname": "fetchAction",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Action mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "PUT",
+          "summary": "Update an Action",
+          "notes": "Updates an action inside Smart Canvas. This operation requires the scope 'smartcanvas.canvas.write'.",
+          "type": "string",
+          "nickname": "updateAction",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Action mnemonic",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "label",
+              "paramType": "query",
+              "description": "The label for this action. This value supports i18n.",
+              "required": true,
+              "type": "string"
+
+            },
+            {
+              "name": "contextPattern",
+              "paramType": "query",
+              "description": "Context pattern (regex) to which this action should be visible. Example = /highlights",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale for which this action should be visible. If omitted, this action will be visible to all locales",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "href",
+              "paramType": "query",
+              "description": "URI for this action",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "target",
+              "paramType": "query",
+              "description": "self or blank (action performed in the same window or a new one)",
+              "required": false,
+              "type": "string",
+              "enum": [
+                "self",
+                "blank"
+              ],
+              "defaultValue": "self"
+            },
+            {
+              "name": "pos",
+              "paramType": "query",
+              "description": "The position that this action should be placed. First position = 1. If omitted, this action will be appended to the end",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "roles",
+              "paramType": "query",
+              "description": "Comma-separated list of roles that will be allowed to see this action.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "jsonExtendedData",
+              "paramType": "query",
+              "description": "Extra information (JSON format) for this action",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Delete an Action",
+          "notes": "Delete an action from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "deleteAction",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Action mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models": {
+    "Bucket": {
+      "id": "Bucket",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Bucket mnemonic"
+        },
+        "contextPattern": {
+          "type": "string",
+          "description": "Context pattern (regex) to which this bucket should be visible. Example = /highlights"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Locale for which this bucket should be visible"
+        },
+        "pos": {
+          "type": "integer",
+          "description": "The position that this bucket should be placed. First position = 1."
+        },
+        "query": {
+          "type": "string",
+          "description": "Query mnemonic to be used to get content for this bucket."
+        },
+        "title": {
+          "type": "string",
+          "description": "Bucket title. This value supports i18n."
+        },
+        "titleAlign": {
+          "type": "string",
+          "description": "Bucket title alignment (center, right or left)."
+        },
+        "bgcolor": {
+          "type": "string",
+          "description": "Background color (example = #00FAB3)"
+        },
+        "bgimage": {
+          "type": "string",
+          "description": "Background image (URL) for this bucket"
+        },
+        "canvas": {
+          "type": "string",
+          "description": "Bucket Canvas mnemonic to render this bucket"
+        },
+        "highlightFirstCard": {
+          "type": "boolean",
+          "description": "If the first card should be highlighted or not"
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum number of cards to be shown in this bucket. If not set, Smart Canvas will incremental load the content. If set and the number of cards exceeds this value, Smart Canvas will render the 'See More button."
+        },
+        "jsonExtendedData": {
+          "type": "string",
+          "description": "Extra information (JSON format) for this bucket"
+        }
+      }
+    },
+    "Tab": {
+      "id": "Tab",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Tab mnemonic"
+        },
+        "locale": {
+          "type": "string",
+          "description": "The locale to which this tab should be created / redefined. If null, should be visible to all locales"
+        },
+        "label": {
+          "type": "string",
+          "description": "The label for this tab. This value supports i18n."
+        },
+        "pos": {
+          "type": "integer",
+          "description": "The position that this tab should be placed. First position = 1."
+        },
+        "buckets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "jsonExtendedData": {
+          "type": "string",
+          "description": "Extra information (JSON format) for this tab"
+        }
+      }
+    },
+    "Action": {
+      "id": "Action",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Action mnemonic"
+        },
+        "label": {
+          "type": "string",
+          "description": "The label for this action. This value supports i18n."
+        },
+        "contextPattern": {
+          "type": "string",
+          "description": "Context pattern (regex) to which this action should be visible. Example = /highlights"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Locale for which this action should be visible"
+        },
+        "href": {
+          "type": "string",
+          "description": "URI for this action"
+        },
+        "target": {
+          "type": "string",
+          "description": "self or blank (action performed in the same window or a new one)"
+        },
+        "pos": {
+          "type": "integer",
+          "description": "The position that this action should be placed. First position = 1."
+        },
+        "roles": {
+          "type": "string",
+          "description": "Comma-separated list of roles that will be allowed to see this action."
+        },
+        "jsonExtendedData": {
+          "type": "string",
+          "description": "Extra information (JSON format) for this action"
+        }
+      }
+    }
+  }
+}

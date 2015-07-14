@@ -1,0 +1,304 @@
+{
+  "swaggerVersion": "1.2",
+  "basePath": "http://api.smartcanvas.com/canvas/v1",
+  "produces": [
+    "application/json"
+  ],
+  "apis": [
+    {
+      "path": "/palettes",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Create a Color Palette",
+          "notes": "Creates a new color palette inside Smart Canvas. For more information about color palettes, see <a href='https://www.google.com/design/spec/style/color.html#color-color-palette' target='_blank'>Material Design Color Specification</a>. <br/><br/>This operation requires the scopes: 'smartcanvas.canvas.write'.",
+          "type": "string",
+          "nickname": "savePalette",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "query",
+              "description": "Color palette mnemonic. Must be unique for each tenant.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "hues",
+              "paramType": "body",
+              "description": "Hues for this palette",
+              "required": true,
+              "type": "array",
+              "items": {
+                "type": "Hue"
+              }
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "GET",
+          "summary": "List Color Palettes",
+          "notes": "Returns a list of color palettes configured for this tenant",
+          "type": "array[ColorPalette]",
+          "nickname": "listPalettes",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/palletes/{id}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch Color Palette",
+          "notes": "Returns a color palette by its mnemonic",
+          "type": "ColorPalette",
+          "nickname": "fetchPalettes",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Color palette mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "PUT",
+          "summary": "Update a Color Palette",
+          "notes": "Updates a color palette inside Smart Canvas. This operation requires the scope 'smartcanvas.canvas.write'.",
+          "type": "string",
+          "nickname": "updatePalette",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Color palette mnemonic",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "hues",
+              "paramType": "body",
+              "description": "Hues for this palette",
+              "required": true,
+              "type": "array",
+              "items": {
+                "type": "Hue"
+              }
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Delete a Color Palette",
+          "notes": "Delete a color palette from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "deletePalette",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Color palette mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models": {
+    "ColorPalette": {
+      "id": "ColorPalette",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Color palette mnemonic"
+        },
+        "hues": {
+          "type": "array",
+          "items": {
+            "type": "Hue"
+          },
+          "description": "Hues that compose this palette"
+        }
+      }
+    },
+    "Hue": {
+      "id": "Hue",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Hue identification. Examples: 500, 50, 100 etc"
+        },
+        "value": {
+          "type": "color",
+          "description": "The color for this hue. Must include #. Examples: #F44336, #FFFFFF etc"
+        }
+      }
+    },
+    "Theme": {
+      "id": "Theme",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Theme mnemonic. Example: colored, mixed, white"
+        },
+        "primaryPalette": {
+          "type": "ColorPalette",
+          "description": "The primary color palette mnemonic"
+        },
+        "accentPalette": {
+          "type": "ColorPalette",
+          "description": "The primary color palette mnemonic"
+        },
+        "warnPalette": {
+          "type": "ColorPalette",
+          "description": "The warn color palette mnemonic"
+        },
+        "backgroundPalette": {
+          "type": "ColorPalette",
+          "description": "The background color palette mnemonic"
+        },
+        "primaryFont": {
+          "type": "string",
+          "description": "Primary font name. Used for titles. Example: Roboto"
+        },
+        "secundaryFont": {
+          "type": "string",
+          "description": "Secundary font name. Used for texts and paragraphs. Example: Roboto"
+        }
+      }
+    }
+  }
+}

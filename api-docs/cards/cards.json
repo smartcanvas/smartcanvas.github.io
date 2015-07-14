@@ -84,7 +84,7 @@
             {
               "name": "q",
               "paramType": "query",
-              "description": "Search term that will be used to filter content. Smart Canvas will look into title, category, content and other indexable fields to match the search criteria. Example = google cloud",
+              "description": "Search term that will be used to filter content. If there is a query mnemonic with this value, the saved query should be used instead of the rest of the parameters, unless the 'ignoreSavedQueries' = true.",
               "required": true,
               "type": "string"
             },
@@ -92,7 +92,7 @@
               "name": "status",
               "paramType": "query",
               "description": "Possible values:<br/><li>- <b>all</b> (all status)</li><li>- <b>approved</b> (Card has already been approved by the moderator)</li><li>- <b>pending</b> (Card is waiting for moderation), expired (Card is expired)</li><li>- <b>rejected</b> (Cards rejected by moderators)</li>",
-              "required": true,
+              "required": false,
               "type": "string",
               "enum": [
                 "all",
@@ -233,6 +233,21 @@
               "description": "Comma-separated list of related entities to include in the response. If ommited, the response will contain all entities. See Card response structure for possible values. Examples = author, contentProvider, attachments, userActivities, permission, locale.",
               "required": false,
               "type": "string"
+            },
+            {
+              "name": "save",
+              "paramType": "query",
+              "description": "Allows you to provide a mnemonic for this query. If informed, Smart Canvas will save this query under this mnemonic for future utilization",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "ignoreSavedQueries",
+              "paramType": "query",
+              "description": "If 'true', this request will ignore saved queries.",
+              "required": false,
+              "type": "boolean",
+              "defaultValue": "false"
             }
           ],
 
