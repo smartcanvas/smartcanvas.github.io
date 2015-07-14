@@ -245,6 +245,120 @@
           ]
         }
       ]
+    },
+    {
+      "path": "/cards/{id}",
+      "operations": [
+        {
+          "method": "PUT",
+          "summary": "Update a Card",
+          "notes": "Updates a card inside Smart Canvas. This operation requires the scope 'smartcanvas.cards.write' or 'smartcanvas.cards.moderate'.",
+          "type": "string",
+          "nickname": "updateCard",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token. The person must have publisher or admin privileges.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Card ID or mnemonic",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "fields",
+              "paramType": "query",
+              "description": "Comma-separated fields to be considered in the update process. If ommited, all fields will be updated. See documentation for possible values. Examples = title,summary,content.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "embed",
+              "paramType": "query",
+              "description": "Comma-separated list of related entities to be updated. If ommited, all entities will be updated. See documentation for possible values. Examples = author, contentProvider, attachments, userActivities, permission, locale.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "card",
+              "description": "Card data to be updated",
+              "required": true,
+              "type": "Card",
+              "paramType": "body"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Delete a Card",
+          "notes": "Delete a card from Smart Canvas. This operation requires the scope 'smartcanvas.cards.write' or 'smartcanvas.cards.moderate'.",
+          "type": "string",
+          "nickname": "deleteCard",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token. The person must have publisher or admin privileges.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Card ID or mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
     }
   ],
   "models": {
