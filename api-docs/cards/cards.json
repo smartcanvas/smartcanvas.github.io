@@ -92,7 +92,7 @@
             {
               "name": "status",
               "paramType": "query",
-              "description": "Possible values:<br/><li>all (all status)</li><li>approved (Card has already been approved by the moderator)</li><li>pending (Card is waiting for moderation), expired (Card is expired)</li><li>rejected (Cards rejected by moderators)</li>",
+              "description": "Possible values:<br/><li>- <b>all</b> (all status)</li><li>- <b>approved</b> (Card has already been approved by the moderator)</li><li>- <b>pending</b> (Card is waiting for moderation), expired (Card is expired)</li><li>- <b>rejected</b> (Cards rejected by moderators)</li>",
               "required": true,
               "type": "string",
               "enum": [
@@ -103,8 +103,140 @@
                 "rejected"
               ],
               "defaultValue": "all"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale to be used. Locales used the following format [language]-[country]. If ommited, Smart Canvas will use the default locale to handle this request. Examples = pt-br, en-us",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "limit",
+              "paramType": "query",
+              "description": "Maximum number of cards to retrieve. If ommited, Smart Canvas will use the default page size configured for this tenant. Maximum value for this attribute is 100. Example: 10",
+              "required": false,
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "maximum": 100,
+              "defaultValue": 10
+            },
+            {
+              "name": "offset",
+              "paramType": "query",
+              "description": "Offset to be applied to the result set. If ommited, offset = 0.",
+              "required": false,
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "maximum": 100,
+              "defaultValue": 10
+            },
+            {
+              "name": "initDate",
+              "paramType": "query",
+              "description": "Returns only cards with publishing date >= this parameter. Format = yyyy-mm-dd",
+              "required": false,
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "name": "endDate",
+              "paramType": "query",
+              "description": "Returns only cards with publishing date <= this parameter. Format = yyyy-mm-dd",
+              "required": false,
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "name": "maxAge",
+              "paramType": "query",
+              "description": "Max age, in days, of the card",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "categories",
+              "paramType": "query",
+              "description": "Comma-separated list of categories. Returns only cards that have this specific categories.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "meta-tags",
+              "paramType": "query",
+              "description": "Comma-separated list of meta-tags. Returns only cards that have this specific tag.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "authorIds",
+              "paramType": "query",
+              "description": "Comma-separated list of authors. Returns only cards published by these authors.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "communityIds",
+              "paramType": "query",
+              "description": "Comma-separated list of communities. Returns only cards published in these communities.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "providerIds",
+              "paramType": "query",
+              "description": "Comma-separated list of providers. Returns only cards coming form these providers.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "jsonExtendedData",
+              "paramType": "query",
+              "description": "Return only cards that contains this specific json extended data. Note: the card must have been ingested with it.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "curationStrategy",
+              "paramType": "query",
+              "description": "Possible values:<br><li>- <b>date</b> (default): sort by date</li><li>- <b>popularity</b>: sort by popularity</li><li>- <b>recommendation</b>: sort by recommendation",
+              "required": false,
+              "type": "string",
+              "enum": [
+                "date",
+                "popularity",
+                "recommendation"
+              ],
+              "defaultValue": "date"
+            },
+            {
+              "name": "decaymentFactory",
+              "paramType": "query",
+              "description": "Decayment factor to be applied to the card's sort strategy based on its age, regardless the curation strategy. This number should be a decimal between 0 and 1. 0 (default) means that no decayment will be applied to the search order, and 1 means that the most aggressive decayment will be applied.",
+              "required": false,
+              "type": "number",
+              "format": "float",
+              "defaultValue": 0
+            },
+            {
+              "name": "fields",
+              "paramType": "query",
+              "description": "Comma-separated fields to include in the response. If ommited, the response will contain all fields. See documentation for possible values. Example = title,summary,content.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "embed",
+              "paramType": "query",
+              "description": "Comma-separated list of related entities to include in the response. If ommited, the response will contain all entities. See Card response structure for possible values. Examples = author, contentProvider, attachments, userActivities, permission, locale.",
+              "required": false,
+              "type": "string"
             }
           ],
+
           "responseMessages": [
             {
               "code": 200,
