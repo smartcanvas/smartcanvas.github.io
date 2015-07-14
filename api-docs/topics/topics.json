@@ -1,0 +1,289 @@
+{
+  "swaggerVersion": "1.2",
+  "basePath": "http://api.smartcanvas.com/admin/v1",
+  "produces": [
+    "application/json"
+  ],
+  "apis": [
+    {
+      "path": "/topics",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Create a Topic",
+          "notes": "Creates a new topic inside Smart Canvas. <br/><br/>This operation requires the scopes: 'smartcanvas.topics.write'.",
+          "type": "string",
+          "nickname": "saveTopic",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "query",
+              "type": "string",
+              "description": "Topic mnemonic",
+              "required": true
+            },
+            {
+              "name": "name",
+              "paramType": "query",
+              "description": "Topic name or label. This value supports i18n.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale to which this topic is valid. If null, it's valid to all locales.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "type",
+              "paramType": "query",
+              "description": "'explicit': topic created explicitly by users. 'discovered': topic created by Smart Canvas and its machine learning algorithms.",
+              "required": true,
+              "type": "string",
+              "enum": [
+                "explicit",
+                "discovered"
+              ]
+            },
+            {
+              "name": "categories",
+              "paramType": "query",
+              "description": "Related categories",
+              "required": false,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "GET",
+          "summary": "List Topics",
+          "notes": "Returns a list of topics",
+          "type": "array[Topic]",
+          "nickname": "listTopics",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Topic locale",
+              "required": false,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/topics/{id}",
+      "operations": [
+        {
+          "method": "PUT",
+          "summary": "Update a Topic",
+          "notes": "Updates a topic inside Smart Canvas. This operation requires the scope 'smartcanvas.topics.write'.",
+          "type": "string",
+          "nickname": "updateTopic",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Topic mnemonic",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "paramType": "query",
+              "description": "Topic name or label. This value supports i18n.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale to which this topic is valid. If null, it's valid to all locales.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "type",
+              "paramType": "query",
+              "description": "'explicit': topic created explicitly by users. 'discovered': topic created by Smart Canvas and its machine learning algorithms.",
+              "required": true,
+              "type": "string",
+              "enum": [
+                "explicit",
+                "discovered"
+              ]
+            },
+            {
+              "name": "categories",
+              "paramType": "query",
+              "description": "Related categories",
+              "required": false,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Delete a Topic",
+          "notes": "Delete a topic from Smart Canvas. This operation requires the scope 'smartcanvas.topics.write'.",
+          "type": "string",
+          "nickname": "deleteTopic",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Topic mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models": {
+    "Topic": {
+      "id": "Topic",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Topic mnemonic"
+        },
+        "name": {
+          "type": "string",
+          "description": "Topic name or label. This value supports i18n."
+        },
+        "locale": {
+          "type": "string",
+          "description": "Locale to which this topic is valid. If null, it's valid to all locales."
+        },
+        "type": {
+          "type": "string",
+          "description": "'explicit': topic created explicitly by users. 'discovered': topic created by Smart Canvas and its machine learning algorithms."
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Related categories"
+        }
+      }
+    }
+  }
+}
