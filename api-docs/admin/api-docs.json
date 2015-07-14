@@ -1,0 +1,23 @@
+{
+  "apiVersion": "1.0.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:8000/admin",
+  "apis": [
+    {
+      "path": "/settings.json",
+      "description": "Manage Settings"
+    },
+    {
+      "path": "/i18n.json",
+      "description": "Manage i18n"
+    }
+  ],
+  "info": {
+    "title": "Admin API",
+    "description": "<br/>This API allows you to adminstrate Smart Canvas, configuring and tweaking its behavior to your needs. <br/><br/>Scopes related with this resource:<br/><br/><li><b>smartcanvas.admin.write</b>: can write admin information.</li><br/>",
+    "termsOfServiceUrl": "http://dev.smartcanvas.com/api-portal/content/terms-and-conditions",
+    "contact": "",
+    "license": "",
+    "licenseUrl": ""
+  }
+}

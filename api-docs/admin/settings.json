@@ -1,0 +1,286 @@
+{
+  "swaggerVersion": "1.2",
+  "basePath": "http://api.smartcanvas.com/admin/v1",
+  "produces": [
+    "application/json"
+  ],
+  "apis": [
+    {
+      "path": "/settings",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Create a Setting",
+          "notes": "Creates a new setting inside Smart Canvas. <b>You should NOT store confidential information inside the settings area</b>. <br/><br/>This operation requires the scopes: 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "saveSetting",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "name",
+              "paramType": "query",
+              "description": "Setting name that will be used as a key to store its value. Should not contain spaces or special characters.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "paramType": "query",
+              "description": "Value for this setting.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "category",
+              "paramType": "query",
+              "description": "The category for this setting. That's an useful way to group settings altogether.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "paramType": "query",
+              "description": "A description for this setting.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale for this setting in format [language]-[country]. That's an optional value. If null, this setting will be valid for all locales.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "GET",
+          "summary": "List Settings",
+          "notes": "Returns a list of settings that matches a specific search criteria.",
+          "type": "array[Setting]",
+          "nickname": "listSettings",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "name",
+              "paramType": "query",
+              "description": "Setting name",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "category",
+              "paramType": "query",
+              "description": "Settings category",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Settings locale",
+              "required": false,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/settings/{name}",
+      "operations": [
+        {
+          "method": "PUT",
+          "summary": "Update a Setting",
+          "notes": "Updates a setting inside Smart Canvas. <b>You should NOT store confidential information inside the settings area</b>. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "updateSetting",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "name",
+              "paramType": "path",
+              "description": "Setting name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "paramType": "query",
+              "description": "Value for this setting.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "category",
+              "paramType": "query",
+              "description": "The category for this setting. That's an useful way to group settings altogether.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "paramType": "query",
+              "description": "A description for this setting.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale for this setting in format [language]-[country]. That's an optional value. If null, this setting will be valid for all locales.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Delete a Setting",
+          "notes": "Delete a setting from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "deleteSetting",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "name",
+              "paramType": "path",
+              "description": "Setting name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models": {
+    "Setting": {
+      "id": "Setting",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Setting name"
+        },
+        "value": {
+          "type": "string",
+          "description": "Setting value"
+        },
+        "description": {
+          "type": "string",
+          "description": "Setting description"
+        },
+        "category": {
+          "type": "string",
+          "description": "Setting category"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Setting locale"
+        }
+      }
+    }
+  }
+}

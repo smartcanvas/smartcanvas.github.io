@@ -1,7 +1,6 @@
 {
   "swaggerVersion": "1.2",
   "basePath": "http://api.smartcanvas.com/card/v1",
-  "resourcePath": "/cards",
   "produces": [
     "application/json"
   ],
@@ -26,7 +25,7 @@
             {
               "name": "x-access-token",
               "paramType": "header",
-              "description": "Access token. The person must have publisher or admin privileges.",
+              "description": "Access token",
               "required": true,
               "type": "string"
             },
@@ -266,7 +265,7 @@
             {
               "name": "x-access-token",
               "paramType": "header",
-              "description": "Access token. The person must have publisher or admin privileges.",
+              "description": "Access token",
               "required": true,
               "type": "string"
             },
@@ -331,7 +330,7 @@
             {
               "name": "x-access-token",
               "paramType": "header",
-              "description": "Access token. The person must have publisher or admin privileges.",
+              "description": "Access token",
               "required": true,
               "type": "string"
             },

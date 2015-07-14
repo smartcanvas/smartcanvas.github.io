@@ -1,0 +1,524 @@
+{
+  "swaggerVersion": "1.2",
+  "basePath": "http://api.smartcanvas.com/admin/v1",
+  "produces": [
+    "application/json"
+  ],
+  "apis": [
+    {
+      "path": "/labels",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Create a Label",
+          "notes": "Allows administrators to define labels for different regions and languages. Using this API you can define a label to be used in your UI. <b>You should NOT store sensetive information as labels</b>. <br/><br/>This operation requires the scopes: 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "saveLabel",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "name",
+              "paramType": "query",
+              "description": "Label name that will be used as a key to store its value. Should not contain spaces or special characters.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "paramType": "query",
+              "description": "Label value",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale for this label in format [language]-[country]. That's an optional value. If null, this label will be valid for all locales.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "category",
+              "paramType": "query",
+              "description": "The category for this label. That's an useful way to group labels altogether.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "paramType": "query",
+              "description": "A description for this label.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "GET",
+          "summary": "List Labels",
+          "notes": "Returns a list of labels that matches a specific search criteria.",
+          "type": "array[Label]",
+          "nickname": "listLabels",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "name",
+              "paramType": "query",
+              "description": "Label name",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Label locale",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "category",
+              "paramType": "query",
+              "description": "Label category",
+              "required": false,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/labels/{name}",
+      "operations": [
+        {
+          "method": "PUT",
+          "summary": "Update a Label",
+          "notes": "Updates a label inside Smart Canvas. <b>You should NOT store sensitive information as a label</b>. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "updateLabel",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "name",
+              "paramType": "path",
+              "description": "Label name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "paramType": "query",
+              "description": "Value for this label.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale for this label in format [language]-[country]. That's an optional value. If null, this label will be valid for all locales.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "category",
+              "paramType": "query",
+              "description": "The category for this label. That's an useful way to group labels altogether.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "paramType": "query",
+              "description": "A description for this label.",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Delete a Label",
+          "notes": "Delete a label from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "deleteLabel",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "name",
+              "paramType": "path",
+              "description": "Label name",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/locales",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Create a Locale",
+          "notes": "Allows administrators to create locales. Each locale has a region (example: us - United States or br - Brazil) and a language (example: en - English or pt - Portuguese). There is one default locale per tenant. <br/><br/>This operation requires the scopes: 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "saveLocale",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Locale to be created in format [language]-[country].",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "label",
+              "paramType": "query",
+              "description": "Label to be used for that locale. This fields supports i18n.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "iconUrl",
+              "paramType": "query",
+              "description": "The URL of the icon that represents this locale",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "isDefault",
+              "paramType": "query",
+              "description": "Indicates if this locale is default or not. If there is another locale defined as default, this locale assume this position.",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "GET",
+          "summary": "List Locales",
+          "notes": "Returns a list of locales defined for this tenant",
+          "type": "array[Locale]",
+          "nickname": "listLocales",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/locales/{locale}",
+      "operations": [
+        {
+          "method": "PUT",
+          "summary": "Update a Locale",
+          "notes": "Updates a locale inside Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "updateLocale",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "locale",
+              "paramType": "path",
+              "description": "Locale to be updated in format [language]-[country].",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "label",
+              "paramType": "query",
+              "description": "Label to be used for that locale. This fields supports i18n.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "iconUrl",
+              "paramType": "query",
+              "description": "The URL of the icon that represents this locale",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "isDefault",
+              "paramType": "query",
+              "description": "Indicates if this locale is default or not. If there is another locale defined as default, this locale assume this position.",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Delete a Locale",
+          "notes": "Delete a locale from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "string",
+          "nickname": "deleteLocale",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "locale",
+              "paramType": "path",
+              "description": "Locale to be deleted",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models": {
+    "Label": {
+      "id": "Label",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Label name"
+        },
+        "value": {
+          "type": "string",
+          "description": "Label value"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Label locale"
+        },
+        "description": {
+          "type": "string",
+          "description": "Label description"
+        },
+        "category": {
+          "type": "string",
+          "description": "Label category"
+        }
+      }
+    },
+    "Locale": {
+      "id": "Locale",
+      "properties": {
+        "locale": {
+          "type": "string",
+          "description": "Locale in format [language]-[country]"
+        },
+        "label": {
+          "type": "string",
+          "description": "Locale label"
+        },
+        "iconUrl": {
+          "type": "string",
+          "description": "The URL of the icon that represents this locale"
+        },
+        "isDefault": {
+          "type": "boolean",
+          "description": "If this locale is the default or not"
+        }
+      }
+    }
+  }
+}
