@@ -13,7 +13,7 @@
           "method": "POST",
           "summary": "Create a Card",
           "notes": "Creates a new card inside Smart Canvas.<br/><br/>This operation requires the scopes: 'smartcanvas.cards.write', 'smartcanvas.cards.moderate'. If 'isAutoModerated' attribute is defined as 'true', you must have 'smartcanvas.cards.moderate' privilege.",
-          "type": "Card",
+          "type": "PostResponse",
           "nickname": "saveCard",
           "parameters": [
             {
@@ -44,6 +44,65 @@
               "required": true,
               "type": "Card",
               "paramType": "body"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "GET",
+          "summary": "List Cards",
+          "notes": "Returns a list of cards that matches a specific search criteria. All cards returned may also contain information such as attachments, user activities (like, dislike, etc) and comments. This operation requires the scope 'smartcanvas.cards.read'",
+          "type": "GetResponse",
+          "nickname": "listCards",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token. If not informed, only public cards will be returned.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "q",
+              "paramType": "query",
+              "description": "Search term that will be used to filter content. Smart Canvas will look into title, category, content and other indexable fields to match the search criteria. Example = google cloud",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "status",
+              "paramType": "query",
+              "description": "Possible values:<br/><li>all (all status)</li><li>approved (Card has already been approved by the moderator)</li><li>pending (Card is waiting for moderation), expired (Card is expired)</li><li>rejected (Cards rejected by moderators)</li>",
+              "required": true,
+              "type": "string",
+              "enum": [
+                "all",
+                "approved",
+                "pending",
+                "expired",
+                "rejected"
+              ],
+              "defaultValue": "all"
             }
           ],
           "responseMessages": [
@@ -386,30 +445,54 @@
         }
       }
     },
-    "BasicError": {
-      "id": "BasicError",
+    "PostResponse": {
+      "id": "PostResponse",
       "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
+        "cardId": {
+          "type": "string",
+          "description": "The id of the card"
         },
-        "message": {
-          "type": "string"
+        "cardMnemonic": {
+          "type": "string",
+          "description": "The mnemonic of the card"
         }
       }
     },
-    "ErrorWithFields": {
-      "id": "ErrorWithFields",
+    "GetResponse": {
+      "id": "GetResponse",
       "properties": {
-        "code": {
+        "meta": {
+          "type": "MetaResponse",
+          "description": "Meta information about the GET request"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "Card"
+          },
+          "description": "The returned array of cards"
+        }
+      }
+    },
+    "MetaResponse": {
+      "id": "MetaResponse",
+      "properties": {
+        "count": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "description": "How many cards were found with this query"
         },
-        "message": {
-          "type": "string"
+        "pos": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The position of the last element of this list in the general listing"
         },
-        "fields": {
-          "type": "string"
+        "facets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Suggestions to refine your search"
         }
       }
     }

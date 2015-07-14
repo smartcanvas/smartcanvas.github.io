@@ -5,12 +5,12 @@
   "apis": [
     {
       "path": "/cards.json",
-      "description": "Manage Cards inside Smart Canvas"
+      "description": "Manage Cards"
     }
   ],
   "info": {
-    "title": "Card API",
-    "description": "<br/>Card is the basic representation of content inside Smart Canvas. Every piece of content hosted in the product was previously cardified. This API allows you to create and get cards from Smart Canvas. <br/><br/>Scopes related with this resource:<br/><br/><li><b>smartcanvas.cards.read</b>: can read cards from Smart Canvas</li><li><b>smartcanvas.cards.write</b>: can create a new card inside Smart Canvas. Can delete or update your own cards.</li><li><b>smartcanvas.cards.moderate</b>: can moderate cards from Smart Canvas, can delete or update any card.</li><br/>",
+    "title": "Cards API",
+    "description": "<br/>Card is the basic representation of a content inside Smart Canvas. Every piece of content hosted in the product was previously cardified. This API allows you to create and get cards from Smart Canvas. <br/><br/>Scopes related with this resource:<br/><br/><li><b>smartcanvas.cards.read</b>: can read cards from Smart Canvas</li><li><b>smartcanvas.cards.write</b>: can create a new card inside Smart Canvas. Can delete or update your own cards.</li><li><b>smartcanvas.cards.moderate</b>: can moderate cards from Smart Canvas, can delete or update any card.</li><br/>",
     "termsOfServiceUrl": "http://dev.smartcanvas.com/api-portal/content/terms-and-conditions",
     "contact": "",
     "license": "",
