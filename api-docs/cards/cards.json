@@ -518,6 +518,14 @@
         "userId": {
           "type": "string",
           "description": "The identifier of the author on the provider"
+        },
+        "createDate": {
+          "type": "string",
+          "description": "Timestamp of this card creation inside the content provider. Using ISO-8601 format."
+        },
+        "updateDate": {
+          "type": "string",
+          "description": "Timestamp of this card last update inside the content provider. Using ISO-8601 format."
         }
       }
     },
