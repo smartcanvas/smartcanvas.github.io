@@ -391,32 +391,39 @@
           "description": "The community that this card belongs to"
         },
         "createDate": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Timestamp of this card creation"
+          "type": "string",
+          "description": "Timestamp of this card creation. Using ISO-8601 format."
         },
         "updateDate": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Timestamp of this card creation"
+          "type": "string",
+          "description": "Timestamp of this card creation. Using ISO-8601 format."
         },
         "publishDate": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Timestamp of this card publishing"
+          "type": "string",
+          "description": "Timestamp of this card publishing. Using ISO-8601 format."
         },
         "expirationDate": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Timestamp of this card expiration"
+          "type": "string",
+          "description": "Timestamp of this card expiration. Using ISO-8601 format."
         },
-        "isAutoModerated": {
+        "autoApprove": {
           "type": "boolean",
-          "description": "Indicates if this card is auto-moderated or not"
+          "description": "Indicates if this card should automatically approved or not"
         },
         "jsonExtendedData": {
           "type": "string",
           "description": "JSON data with extra information saved with this card"
+        },
+        "coordinates": {
+          "type": "string",
+          "description": "Represents the geographic location of this Card as reported by the client application. The inner coordinates array is formatted as geoJSON (longitude first, then latitude)."
+        },
+        "locales": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Locale list in the format [language]-[country]"
         },
         "categories": {
           "type": "array",
@@ -447,6 +454,11 @@
           },
           "description": "Attachments contained in this card"
         },
+        "activityCounters": {
+          "$ref": "ActivityCounter",
+          "readOnly": true,
+          "description": "Activity counters. Example: number of likes, shares etc."
+        },
         "userActivities": {
           "$ref": "UserActivity",
           "readOnly": true,
@@ -455,10 +467,6 @@
         "permission": {
           "$ref": "Permission",
           "description": "Security model data, includes security level and user / group permissions"
-        },
-        "locale": {
-          "$ref": "Locale",
-          "description": "Locale and i18n information"
         }
       }
     },
@@ -495,19 +503,19 @@
     "ContentProvider": {
       "id": "ContentProvider",
       "properties": {
-        "providerId": {
+        "id": {
           "type": "string",
           "description": "Identifies the provider (ID or mnemonic), the original source of this content. Example = googleplus"
         },
-        "providerContentId": {
+        "contentId": {
           "type": "string",
           "description": "Identifies this content on its original source"
         },
-        "providerContentURL": {
+        "contentURL": {
           "type": "string",
           "description": "Original URL of this content on its provider"
         },
-        "providerUserId": {
+        "userId": {
           "type": "string",
           "description": "The identifier of the author on the provider"
         }
@@ -518,13 +526,12 @@
       "properties": {
         "type": {
           "type": "string",
-          "description": "Type of this attachment (*TODO review possible values)",
+          "description": "Type of this attachment",
           "default": "photo",
           "enum": [
             "photo",
             "article",
-            "video",
-            "drive"
+            "video"
           ]
         },
         "displayName": {
@@ -544,7 +551,7 @@
         },
         "embedURL": {
           "type": "string",
-          "format": "Embed URL for this attachment (* TODO - o que eh isso?)"
+          "format": "Embed URL for this attachment"
         },
         "jsonExtendedData": {
           "type": "string",
@@ -579,7 +586,7 @@
         }
       }
     },
-    "Activity": {
+    "ActivityCounter": {
       "id": "Activity",
       "properties": {
         "type": {
@@ -659,35 +666,6 @@
           "items": {
             "type": "string"
           }
-        }
-      }
-    },
-    "Locale": {
-      "id": "Locale",
-      "properties": {
-        "languages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "region": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "geoCode": {
-          "type": "string",
-          "description": "Geo code from where this card was created (*TODO talvez move-lo para a raiz, e mudar de nome)"
-        },
-        "address": {
-          "type": "string",
-          "description": "Address from where this card was created"
-        },
-        "placeName": {
-          "type": "string",
-          "description": "Name of the place from where this card was created"
         }
       }
     },
