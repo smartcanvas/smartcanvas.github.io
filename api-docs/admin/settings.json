@@ -84,7 +84,7 @@
           "method": "GET",
           "summary": "List Settings",
           "notes": "Returns a list of settings that matches a specific search criteria.",
-          "type": "array[Setting]",
+          "type": "GetResponse",
           "nickname": "listSettings",
           "parameters": [
             {
@@ -286,6 +286,32 @@
         "locale": {
           "type": "string",
           "description": "Setting locale"
+        }
+      }
+    },
+    "GetResponse": {
+      "id": "GetResponse",
+      "properties": {
+        "meta": {
+          "type": "MetaResponse",
+          "description": "Meta information about the GET request"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "Setting"
+          },
+          "description": "The returned array of settings"
+        }
+      }
+    },
+    "MetaResponse": {
+      "id": "MetaResponse",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "How many settings were found with this query"
         }
       }
     }
