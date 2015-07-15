@@ -12,7 +12,7 @@
           "method": "POST",
           "summary": "Create a Label",
           "notes": "Allows administrators to define labels for different regions and languages. Using this API you can define a label to be used in your UI. <b>You should NOT store sensetive information as labels</b>. <br/><br/>This operation requires the scopes: 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "saveLabel",
           "parameters": [
             {
@@ -75,7 +75,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 201,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -141,7 +141,7 @@
           "method": "PUT",
           "summary": "Update a Label",
           "notes": "Updates a label inside Smart Canvas. <b>You should NOT store sensitive information as a label</b>. This operation requires the scope 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "updateLabel",
           "parameters": [
             {
@@ -204,7 +204,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -213,7 +213,7 @@
           "method": "DELETE",
           "summary": "Delete a Label",
           "notes": "Delete a label from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "deleteLabel",
           "parameters": [
             {
@@ -244,11 +244,19 @@
               "description": "Label name",
               "required": true,
               "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Label locale. If informed, only the label for this specific locale will be deleted. If not, all labels with the name will be deleted.",
+              "required": false,
+              "type": "string"
             }
+
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -262,7 +270,7 @@
           "method": "POST",
           "summary": "Create a Locale",
           "notes": "Allows administrators to create locales. Each locale has a region (example: us - United States or br - Brazil) and a language (example: en - English or pt - Portuguese). There is one default locale per tenant. <br/><br/>This operation requires the scopes: 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "saveLocale",
           "parameters": [
             {
@@ -319,7 +327,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 201,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -364,7 +372,7 @@
           "method": "PUT",
           "summary": "Update a Locale",
           "notes": "Updates a locale inside Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "updateLocale",
           "parameters": [
             {
@@ -421,7 +429,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -430,7 +438,7 @@
           "method": "DELETE",
           "summary": "Delete a Locale",
           "notes": "Delete a locale from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "deleteLocale",
           "parameters": [
             {
@@ -465,7 +473,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]

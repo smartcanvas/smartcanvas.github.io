@@ -12,7 +12,7 @@
           "method": "POST",
           "summary": "Create a Setting",
           "notes": "Creates a new setting inside Smart Canvas. <b>You should NOT store confidential information inside the settings area</b>. <br/><br/>This operation requires the scopes: 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "saveSetting",
           "parameters": [
             {
@@ -75,7 +75,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 201,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -141,7 +141,7 @@
           "method": "PUT",
           "summary": "Update a Setting",
           "notes": "Updates a setting inside Smart Canvas. <b>You should NOT store confidential information inside the settings area</b>. This operation requires the scope 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "updateSetting",
           "parameters": [
             {
@@ -204,7 +204,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -213,7 +213,7 @@
           "method": "DELETE",
           "summary": "Delete a Setting",
           "notes": "Delete a setting from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "deleteSetting",
           "parameters": [
             {
@@ -244,11 +244,18 @@
               "description": "Setting name",
               "required": true,
               "type": "string"
+            },
+            {
+              "name": "locale",
+              "paramType": "query",
+              "description": "Setting locale. If informed, only the setting for this specific locale will be deleted. If not, all settings with the name will be deleted.",
+              "required": false,
+              "type": "string"
             }
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
