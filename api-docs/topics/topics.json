@@ -12,7 +12,7 @@
           "method": "POST",
           "summary": "Create a Topic",
           "notes": "Creates a new topic inside Smart Canvas. <br/><br/>This operation requires the scopes: 'smartcanvas.topics.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "saveTopic",
           "parameters": [
             {
@@ -82,7 +82,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 201,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -91,7 +91,7 @@
           "method": "GET",
           "summary": "List Topics",
           "notes": "Returns a list of topics",
-          "type": "array[Topic]",
+          "type": "GetResponseTopics",
           "nickname": "listTopics",
           "parameters": [
             {
@@ -134,7 +134,7 @@
           "method": "PUT",
           "summary": "Update a Topic",
           "notes": "Updates a topic inside Smart Canvas. This operation requires the scope 'smartcanvas.topics.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "updateTopic",
           "parameters": [
             {
@@ -204,7 +204,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -213,7 +213,7 @@
           "method": "DELETE",
           "summary": "Delete a Topic",
           "notes": "Delete a topic from Smart Canvas. This operation requires the scope 'smartcanvas.topics.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "deleteTopic",
           "parameters": [
             {
@@ -248,7 +248,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -282,6 +282,32 @@
             "type": "string"
           },
           "description": "Related categories"
+        }
+      }
+    },
+    "GetResponseTopics": {
+      "id": "GetResponseTopics",
+      "properties": {
+        "meta": {
+          "type": "MetaResponse",
+          "description": "Meta information about the GET request"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "Topic"
+          },
+          "description": "The returned array of topics"
+        }
+      }
+    },
+    "MetaResponse": {
+      "id": "MetaResponse",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "How many items were found with this query"
         }
       }
     }

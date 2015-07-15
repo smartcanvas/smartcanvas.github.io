@@ -529,7 +529,7 @@
       }
     },
     "GetResponseLabel": {
-      "id": "GetResponse",
+      "id": "GetResponseLabel",
       "properties": {
         "meta": {
           "type": "MetaResponse",
@@ -540,12 +540,12 @@
           "items": {
             "type": "Label"
           },
-          "description": "The returned array of settings"
+          "description": "The returned array of labels"
         }
       }
     },
     "GetResponseLocale": {
-      "id": "GetResponse",
+      "id": "GetResponseLocale",
       "properties": {
         "meta": {
           "type": "MetaResponse",
@@ -556,7 +556,7 @@
           "items": {
             "type": "Locale"
           },
-          "description": "The returned array of settings"
+          "description": "The returned array of locales"
         }
       }
     },
@@ -566,7 +566,7 @@
         "count": {
           "type": "integer",
           "format": "int32",
-          "description": "How many settings were found with this query"
+          "description": "How many items were found with this query"
         }
       }
     }
