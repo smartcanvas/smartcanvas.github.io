@@ -47,7 +47,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 201,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -84,8 +84,15 @@
             {
               "name": "q",
               "paramType": "query",
-              "description": "Search term that will be used to filter content. If there is a query mnemonic with this value, the saved query should be used instead of the rest of the parameters, unless the 'ignoreSavedQueries' = true.",
-              "required": true,
+              "description": "Search term that will be used to filter content. This parameter is required if 'm' parameter is not provided.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "m",
+              "paramType": "query",
+              "description": "Query mnemonic to be executed. This mnemonic must has been saved previously (see 'save' parameter).",
+              "required": false,
               "type": "string"
             },
             {
@@ -237,17 +244,9 @@
             {
               "name": "save",
               "paramType": "query",
-              "description": "Allows you to provide a mnemonic for this query. If informed, Smart Canvas will save this query under this mnemonic for future utilization",
+              "description": "Mnemonic to save this query. Doing that, this query can be reused later using the parameter 'm'.",
               "required": false,
               "type": "string"
-            },
-            {
-              "name": "ignoreSavedQueries",
-              "paramType": "query",
-              "description": "If 'true', this request will ignore saved queries.",
-              "required": false,
-              "type": "boolean",
-              "defaultValue": "false"
             }
           ],
 
@@ -264,10 +263,54 @@
       "path": "/cards/{id}",
       "operations": [
         {
+          "method": "GET",
+          "summary": "Fetch a Card",
+          "notes": "Fetches a card from Smart Canvas. This operation requires the scope 'smartcanvas.cards.read'.",
+          "type": "Card",
+          "nickname": "fetchCard",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Card ID or mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
           "method": "PUT",
           "summary": "Update a Card",
           "notes": "Updates a card inside Smart Canvas. This operation requires the scope 'smartcanvas.cards.write' or 'smartcanvas.cards.moderate'.",
-          "type": "string",
+          "type": "void",
           "nickname": "updateCard",
           "parameters": [
             {
@@ -323,7 +366,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -332,7 +375,7 @@
           "method": "DELETE",
           "summary": "Delete a Card",
           "notes": "Delete a card from Smart Canvas. This operation requires the scope 'smartcanvas.cards.write' or 'smartcanvas.cards.moderate'.",
-          "type": "string",
+          "type": "void",
           "nickname": "deleteCard",
           "parameters": [
             {
@@ -367,7 +410,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -470,12 +513,10 @@
         },
         "activityCounters": {
           "$ref": "ActivityCounter",
-          "readOnly": true,
           "description": "Activity counters. Example: number of likes, shares etc."
         },
         "userActivities": {
           "$ref": "UserActivity",
-          "readOnly": true,
           "description": "Information about user activities such as like, share etc"
         },
         "permission": {

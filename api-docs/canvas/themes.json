@@ -264,6 +264,14 @@
         "value": {
           "type": "color",
           "description": "The color for this hue. Must include #. Examples: #F44336, #FFFFFF etc"
+        },
+        "contrast": {
+          "type": "string",
+          "description": "Contrast to be used for fonts",
+          "enum": [
+            "light",
+            "dark"
+          ]
         }
       }
     },
@@ -272,7 +280,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "Theme mnemonic. Example: colored, mixed, white"
+          "description": "Theme mnemonic"
         },
         "primaryPalette": {
           "type": "ColorPalette",
@@ -280,7 +288,7 @@
         },
         "accentPalette": {
           "type": "ColorPalette",
-          "description": "The primary color palette mnemonic"
+          "description": "The accent color palette mnemonic"
         },
         "warnPalette": {
           "type": "ColorPalette",
