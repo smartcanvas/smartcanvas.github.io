@@ -12,7 +12,7 @@
           "method": "POST",
           "summary": "Create a Bucket",
           "notes": "Creates a new bucket inside Smart Canvas. <br/><br/>This operation requires the scopes: 'smartcanvas.canvas.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "saveBucket",
           "parameters": [
             {
@@ -45,13 +45,6 @@
               "type": "string"
             },
             {
-              "name": "query",
-              "paramType": "query",
-              "description": "Query term or mnemonic to be used to get content for this bucket.",
-              "required": true,
-              "type": "string"
-            },
-            {
               "name": "contextPattern",
               "paramType": "query",
               "description": "Context pattern (regex) to which this bucket should be visible. Example = /highlights",
@@ -68,12 +61,20 @@
 
             },
             {
+              "name": "query",
+              "paramType": "query",
+              "description": "Query term or mnemonic to be used to get content for this bucket.",
+              "required": true,
+              "type": "string"
+            },
+            {
               "name": "pos",
               "paramType": "query",
               "description": "The position that this bucket should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the context.",
               "required": false,
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "minimum": 1
             },
             {
               "name": "title",
@@ -142,7 +143,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 201,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -151,7 +152,7 @@
           "method": "GET",
           "summary": "List Buckets",
           "notes": "Returns the list of buckets of a specific context",
-          "type": "array[Bucket]",
+          "type": "GetResponseBuckets",
           "nickname": "listBuckets",
           "parameters": [
             {
@@ -179,7 +180,7 @@
             {
               "name": "locale",
               "paramType": "query",
-              "description": "Locale to be used as filter",
+              "description": "Locale to be used as filter. If ommited, all buckets will be returned.",
               "required": false,
               "type": "string"
             }
@@ -239,7 +240,7 @@
           "method": "PUT",
           "summary": "Update a Bucket",
           "notes": "Updates a bucket inside Smart Canvas. This operation requires the scope 'smartcanvas.canvas.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "updateBucket",
           "parameters": [
             {
@@ -272,13 +273,6 @@
               "type": "string"
             },
             {
-              "name": "query",
-              "paramType": "query",
-              "description": "Query term or mnemonic to be used to get content for this bucket.",
-              "required": true,
-              "type": "string"
-            },
-            {
               "name": "contextPattern",
               "paramType": "query",
               "description": "Context pattern (regex) to which this bucket should be visible. Example = /highlights",
@@ -293,6 +287,13 @@
               "required": false,
               "type": "string"
 
+            },
+            {
+              "name": "query",
+              "paramType": "query",
+              "description": "Query term or mnemonic to be used to get content for this bucket.",
+              "required": true,
+              "type": "string"
             },
             {
               "name": "pos",
@@ -369,7 +370,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -378,7 +379,7 @@
           "method": "DELETE",
           "summary": "Delete a Bucket",
           "notes": "Delete a bucket from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "deletePalette",
           "parameters": [
             {
@@ -413,7 +414,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -427,7 +428,7 @@
           "method": "POST",
           "summary": "Create a Tab",
           "notes": "Creates a new tab inside Smart Canvas. <br/><br/>This operation requires the scopes: 'smartcanvas.canvas.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "saveTab",
           "parameters": [
             {
@@ -467,6 +468,13 @@
               "type": "string"
             },
             {
+              "name": "context",
+              "paramType": "query",
+              "description": "Context for this tab",
+              "required": true,
+              "type": "string"
+            },
+            {
               "name": "pos",
               "paramType": "query",
               "description": "The position that this tab should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the tabs.",
@@ -481,16 +489,6 @@
               "type": "string"
             },
             {
-              "name": "buckets",
-              "paramType": "query",
-              "description": "List of bucket mnemonics related to this tab",
-              "required": true,
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            {
               "name": "jsonExtendedData",
               "paramType": "query",
               "description": "Extended data (JSON format) for this tab",
@@ -500,7 +498,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 201,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -509,7 +507,7 @@
           "method": "GET",
           "summary": "List Tabs",
           "notes": "Returns the list of tabs for a specific locale",
-          "type": "array[Tab]",
+          "type": "GetResponseTabs",
           "nickname": "listTabs",
           "parameters": [
             {
@@ -530,7 +528,7 @@
             {
               "name": "locale",
               "paramType": "query",
-              "description": "Locale to be used as filter. If omitted, the default will be used.",
+              "description": "Locale to be used as filter. If omitted, all tabs will be returned",
               "required": false,
               "type": "string"
             }
@@ -590,7 +588,7 @@
           "method": "PUT",
           "summary": "Update a Tab",
           "notes": "Updates a tab inside Smart Canvas. This operation requires the scope 'smartcanvas.canvas.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "updateTab",
           "parameters": [
             {
@@ -630,6 +628,13 @@
               "type": "string"
             },
             {
+              "name": "context",
+              "paramType": "query",
+              "description": "Context for this tab",
+              "required": true,
+              "type": "string"
+            },
+            {
               "name": "pos",
               "paramType": "query",
               "description": "The position that this tab should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the tabs.",
@@ -644,16 +649,6 @@
               "type": "string"
             },
             {
-              "name": "buckets",
-              "paramType": "query",
-              "description": "List of bucket mnemonics related to this tab",
-              "required": true,
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            {
               "name": "jsonExtendedData",
               "paramType": "query",
               "description": "Extended data (JSON format) for this tab",
@@ -663,7 +658,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -672,7 +667,7 @@
           "method": "DELETE",
           "summary": "Delete a Tab",
           "notes": "Delete a tab from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "deleteTab",
           "parameters": [
             {
@@ -707,7 +702,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -721,7 +716,7 @@
           "method": "POST",
           "summary": "Create an Action",
           "notes": "Creates an action inside Smart Canvas. <br/><br/>This operation requires the scopes: 'smartcanvas.canvas.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "saveTab",
           "parameters": [
             {
@@ -795,6 +790,13 @@
               "defaultValue": "self"
             },
             {
+              "name": "icon",
+              "paramType": "query",
+              "description": "Icon to be used for this action",
+              "required": false,
+              "type": "string"
+            },
+            {
               "name": "pos",
               "paramType": "query",
               "description": "The position that this action should be placed. First position = 1. If omitted, this action will be appended to the end",
@@ -819,7 +821,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 201,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -828,7 +830,7 @@
           "method": "GET",
           "summary": "List Actions",
           "notes": "Returns the list of actions for a specific context and locale",
-          "type": "array[Action]",
+          "type": "GetResponseActions",
           "nickname": "listActions",
           "parameters": [
             {
@@ -856,7 +858,7 @@
             {
               "name": "locale",
               "paramType": "query",
-              "description": "Locale to be used as filter. If omitted, the default will be used.",
+              "description": "Locale to be used as filter. If omitted, all locales will be considered",
               "required": false,
               "type": "string"
             }
@@ -990,6 +992,13 @@
               "defaultValue": "self"
             },
             {
+              "name": "icon",
+              "paramType": "query",
+              "description": "Icon to be used for this action",
+              "required": false,
+              "type": "string"
+            },
+            {
               "name": "pos",
               "paramType": "query",
               "description": "The position that this action should be placed. First position = 1. If omitted, this action will be appended to the end",
@@ -1014,7 +1023,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -1058,7 +1067,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -1106,7 +1115,7 @@
           "type": "string",
           "description": "Background image (URL) for this bucket"
         },
-        "canvas": {
+        "canvasStrategy": {
           "type": "string",
           "description": "Bucket Canvas mnemonic to render this bucket"
         },
@@ -1138,6 +1147,10 @@
         "label": {
           "type": "string",
           "description": "The label for this tab. This value supports i18n."
+        },
+        "context": {
+          "type": "string",
+          "description": "The context for this tab."
         },
         "pos": {
           "type": "integer",
@@ -1182,6 +1195,10 @@
           "type": "string",
           "description": "self or blank (action performed in the same window or a new one)"
         },
+        "icon": {
+          "type": "string",
+          "description": "The icon to be used with this action"
+        },
         "pos": {
           "type": "integer",
           "description": "The position that this action should be placed. First position = 1."
@@ -1195,6 +1212,65 @@
           "description": "Extra information (JSON format) for this action"
         }
       }
+    },
+    "GetResponseBuckets": {
+      "id": "GetResponseBuckets",
+      "properties": {
+        "meta": {
+          "type": "MetaResponse",
+          "description": "Meta information about the GET request"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "Bucket"
+          },
+          "description": "The returned array of objects"
+        }
+      }
+    },
+    "GetResponseActions": {
+      "id": "GetResponseActions",
+      "properties": {
+        "meta": {
+          "type": "MetaResponse",
+          "description": "Meta information about the GET request"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "Action"
+          },
+          "description": "The returned array of objects"
+        }
+      }
+    },
+    "GetResponseTabs": {
+      "id": "GetResponseTabs",
+      "properties": {
+        "meta": {
+          "type": "MetaResponse",
+          "description": "Meta information about the GET request"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "Tab"
+          },
+          "description": "The returned array of objects"
+        }
+      }
+    },
+    "MetaResponse": {
+      "id": "MetaResponse",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "How many items were found with this query"
+        }
+      }
     }
+
   }
 }

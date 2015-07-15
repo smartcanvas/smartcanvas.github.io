@@ -12,7 +12,7 @@
           "method": "POST",
           "summary": "Create a Color Palette",
           "notes": "Creates a new color palette inside Smart Canvas. For more information about color palettes, see <a href='https://www.google.com/design/spec/style/color.html#color-color-palette' target='_blank'>Material Design Color Specification</a>. <br/><br/>This operation requires the scopes: 'smartcanvas.canvas.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "savePalette",
           "parameters": [
             {
@@ -57,7 +57,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 201,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -66,7 +66,7 @@
           "method": "GET",
           "summary": "List Color Palettes",
           "notes": "Returns a list of color palettes configured for this tenant",
-          "type": "array[ColorPalette]",
+          "type": "GetResponsePalettes",
           "nickname": "listPalettes",
           "parameters": [
             {
@@ -140,7 +140,7 @@
           "method": "PUT",
           "summary": "Update a Color Palette",
           "notes": "Updates a color palette inside Smart Canvas. This operation requires the scope 'smartcanvas.canvas.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "updatePalette",
           "parameters": [
             {
@@ -185,7 +185,7 @@
           ],
           "responseMessages": [
             {
-              "code": 200,
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -194,7 +194,7 @@
           "method": "DELETE",
           "summary": "Delete a Color Palette",
           "notes": "Delete a color palette from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
-          "type": "string",
+          "type": "void",
           "nickname": "deletePalette",
           "parameters": [
             {
@@ -229,7 +229,302 @@
           ],
           "responseMessages": [
             {
+              "code": 204,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/themes",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Create a Theme",
+          "notes": "Creates a theme inside Smart Canvas. <br/><br/>This operation requires the scopes: 'smartcanvas.canvas.write'.",
+          "type": "void",
+          "nickname": "saveTheme",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "query",
+              "description": "Theme mnemonic",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "primaryPaletteId",
+              "paramType": "query",
+              "description": "The primary color palette mnemonic",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "accentPaletteId",
+              "paramType": "query",
+              "description": "The accent color palette mnemonic",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "warnPaletteId",
+              "paramType": "query",
+              "description": "The warn color palette mnemonic",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "backgroundPaletteId",
+              "paramType": "query",
+              "description": "The background color palette mnemonic",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "primaryFont",
+              "paramType": "query",
+              "description": "Primary font name. Used for titles. Example: Roboto",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "secundaryFont",
+              "paramType": "query",
+              "description": "Secundary font name. Used for texts and paragraphs. Example: Roboto",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "GET",
+          "summary": "List Themes",
+          "notes": "Returns a list of themes configured for this tenant",
+          "type": "GetResponseThemes",
+          "nickname": "listThemes",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            }
+          ],
+
+          "responseMessages": [
+            {
               "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/themes/{id}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch a Theme",
+          "notes": "Returns a theme by its mnemonic",
+          "type": "Theme",
+          "nickname": "fetchTheme",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Theme mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+
+          "responseMessages": [
+            {
+              "code": 200,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "PUT",
+          "summary": "Update a Theme",
+          "notes": "Updates a theme inside Smart Canvas. This operation requires the scope 'smartcanvas.canvas.write'.",
+          "type": "void",
+          "nickname": "updateTheme",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Theme mnemonic",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "primaryPaletteId",
+              "paramType": "query",
+              "description": "The primary color palette mnemonic",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "accentPaletteId",
+              "paramType": "query",
+              "description": "The accent color palette mnemonic",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "warnPaletteId",
+              "paramType": "query",
+              "description": "The warn color palette mnemonic",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "backgroundPaletteId",
+              "paramType": "query",
+              "description": "The background color palette mnemonic",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "primaryFont",
+              "paramType": "query",
+              "description": "Primary font name. Used for titles. Example: Roboto",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "secundaryFont",
+              "paramType": "query",
+              "description": "Secundary font name. Used for texts and paragraphs. Example: Roboto",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
+              "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
+            }
+          ]
+        },
+        {
+          "method": "DELETE",
+          "summary": "Delete a Theme",
+          "notes": "Delete a theme from Smart Canvas. This operation requires the scope 'smartcanvas.admin.write'.",
+          "type": "void",
+          "nickname": "deleteTheme",
+          "parameters": [
+            {
+              "name": "x-client-id",
+              "paramType": "header",
+              "description": "Client ID required to make this API call",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-access-token",
+              "paramType": "header",
+              "description": "Access token",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "x-suppress-response-codes",
+              "paramType": "header",
+              "description": "If 'true', the HTTP response is always 200. Default = 'false'",
+              "required": true,
+              "type": "boolean",
+              "defaultValue": "false"
+            },
+            {
+              "name": "id",
+              "paramType": "path",
+              "description": "Theme mnemonic",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 204,
               "message": "See <a href='http://dev.smartcanvas.com/api-portal/content/response-messages' target='_blank'>Response Codes</a> for all response and error codes"
             }
           ]
@@ -305,6 +600,48 @@
         "secundaryFont": {
           "type": "string",
           "description": "Secundary font name. Used for texts and paragraphs. Example: Roboto"
+        }
+      }
+    },
+    "GetResponsePalettes": {
+      "id": "GetResponsePalettes",
+      "properties": {
+        "meta": {
+          "type": "MetaResponse",
+          "description": "Meta information about the GET request"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "ColorPalette"
+          },
+          "description": "The returned array of objects"
+        }
+      }
+    },
+    "GetResponseThemes": {
+      "id": "GetResponseThemes",
+      "properties": {
+        "meta": {
+          "type": "MetaResponse",
+          "description": "Meta information about the GET request"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "Theme"
+          },
+          "description": "The returned array of objects"
+        }
+      }
+    },
+    "MetaResponse": {
+      "id": "MetaResponse",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "How many items were found with this query"
         }
       }
     }
