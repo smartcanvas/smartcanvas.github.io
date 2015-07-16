@@ -425,7 +425,7 @@
         "id": {
           "type": "integer",
           "format": "int64",
-          "description": "Unique identifier for a card in Smart Canvas"
+          "description": "<b>[Read Only]</b> Unique identifier for a card in Smart Canvas"
         },
         "mnemonic": {
           "type": "string",
@@ -445,7 +445,7 @@
         },
         "status": {
           "type": "string",
-          "description": "Card status. Examples: approved, pending, expired, rejected"
+          "description": "<b>[Read Only]</b> Card status. Examples: approved, pending, expired, rejected"
         },
         "community": {
           "$ref": "Community",
@@ -453,11 +453,11 @@
         },
         "createDate": {
           "type": "string",
-          "description": "Timestamp of this card creation. Using ISO-8601 format."
+          "description": "<b>[Read Only]</b> Timestamp of this card creation. Using ISO-8601 format."
         },
         "updateDate": {
           "type": "string",
-          "description": "Timestamp of this card creation. Using ISO-8601 format."
+          "description": "<b>[Read Only]</b> Timestamp of this card creation. Using ISO-8601 format."
         },
         "publishDate": {
           "type": "string",
