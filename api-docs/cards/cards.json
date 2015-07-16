@@ -443,6 +443,10 @@
           "type": "string",
           "description": "Content of the card"
         },
+        "status": {
+          "type": "string",
+          "description": "Card status. Examples: approved, pending, expired, rejected"
+        },
         "community": {
           "$ref": "Community",
           "description": "The community that this card belongs to"
