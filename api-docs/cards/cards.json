@@ -171,7 +171,7 @@
               "type": "string"
             },
             {
-              "name": "meta-tags",
+              "name": "metaTags",
               "paramType": "query",
               "description": "Comma-separated list of meta-tags. Returns only cards that have this specific tag.",
               "required": false,
@@ -489,7 +489,7 @@
           },
           "description": "Categories (tags) associated to this card"
         },
-        "meta-tags": {
+        "metaTags": {
           "type": "array",
           "items": {
             "type": "string"
@@ -643,7 +643,7 @@
           "format": "int32",
           "description": "Image width"
         },
-        "originalUrl": {
+        "originalURL": {
           "type": "string",
           "description": "Original image URL on the content provider"
         }
