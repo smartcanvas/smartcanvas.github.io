@@ -84,7 +84,7 @@
             {
               "name": "q",
               "paramType": "query",
-              "description": "Search term that will be used to filter content. This parameter is required if 'm' parameter is not provided.",
+              "description": "Search term that will be used to filter content.",
               "required": false,
               "type": "string"
             },
