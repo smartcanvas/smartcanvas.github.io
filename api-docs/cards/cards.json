@@ -471,6 +471,10 @@
           "type": "boolean",
           "description": "Indicates if this card should automatically approved or not"
         },
+        "notifyOnApproval": {
+          "type": "boolean",
+          "description": "Notify users when this card is approved"
+        },
         "jsonExtendedData": {
           "type": "string",
           "description": "JSON data with extra information saved with this card"
