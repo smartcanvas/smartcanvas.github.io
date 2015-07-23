@@ -544,9 +544,9 @@
           "type": "string",
           "description": "Author display name"
         },
-        "imageURL": {
-          "type": "string",
-          "description": "Author image URL"
+        "image": {
+          "type": "Image",
+          "description": "Author image"
         }
       }
     },
