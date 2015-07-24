@@ -1,0 +1,27 @@
+{
+  "title": "This is a test",
+  "summary": "This is the summary of the test card",
+  "content": "This is the content of the test card",
+  "community": {
+    "id": "My community",
+    "displayName": "This is a new community"
+  },
+  "autoApprove": true,
+  "notifyOnApproval": false,
+  "jsonExtendedData": "{ 'hello': 'world' }",
+  "locales": [
+    "pt-br"
+  ],
+  "categories": [
+    "cloud",
+    "google"
+  ],
+  "metaTags": [
+    "test",
+    "new"
+  ],
+  "author": {
+    "id": "viveiros@ciandt.com",
+    "displayName": "Daniel Viveiros",
+  }
+}
