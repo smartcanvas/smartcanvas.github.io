@@ -108,7 +108,7 @@
                 "expired",
                 "rejected"
               ],
-              "defaultValue": "all"
+              "defaultValue": "approved"
             },
             {
               "name": "locale",
