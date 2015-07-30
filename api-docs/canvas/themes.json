@@ -283,9 +283,9 @@
               "required": true
             },
             {
-              "name": "accentPaletteId",
+              "name": "secondaryPaletteId",
               "paramType": "query",
-              "description": "The accent color palette mnemonic",
+              "description": "The secondary color palette mnemonic",
               "type": "string",
               "required": true
             },
@@ -311,7 +311,7 @@
               "required": true
             },
             {
-              "name": "secundaryFont",
+              "name": "secondaryFont",
               "paramType": "query",
               "description": "Secundary font name. Used for texts and paragraphs. Example: Roboto",
               "type": "string",
@@ -443,9 +443,9 @@
               "required": true
             },
             {
-              "name": "accentPaletteId",
+              "name": "secondaryPaletteId",
               "paramType": "query",
-              "description": "The accent color palette mnemonic",
+              "description": "The secondary color palette mnemonic",
               "type": "string",
               "required": true
             },
@@ -471,9 +471,9 @@
               "required": true
             },
             {
-              "name": "secundaryFont",
+              "name": "secondaryFont",
               "paramType": "query",
-              "description": "Secundary font name. Used for texts and paragraphs. Example: Roboto",
+              "description": "Secondary font name. Used for texts and paragraphs. Example: Roboto",
               "type": "string",
               "required": true
             }
@@ -581,9 +581,9 @@
           "type": "ColorPalette",
           "description": "The primary color palette mnemonic"
         },
-        "accentPalette": {
+        "secondaryPalette": {
           "type": "ColorPalette",
-          "description": "The accent color palette mnemonic"
+          "description": "The secondary color palette mnemonic"
         },
         "warnPalette": {
           "type": "ColorPalette",
@@ -597,9 +597,9 @@
           "type": "string",
           "description": "Primary font name. Used for titles. Example: Roboto"
         },
-        "secundaryFont": {
+        "secondaryFont": {
           "type": "string",
-          "description": "Secundary font name. Used for texts and paragraphs. Example: Roboto"
+          "description": "Secondary font name. Used for texts and paragraphs. Example: Roboto"
         }
       }
     },

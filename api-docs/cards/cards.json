@@ -113,14 +113,14 @@
             {
               "name": "locale",
               "paramType": "query",
-              "description": "Locale to be used. Locales used the following format [language]-[country]. If ommited, Smart Canvas will use the default locale to handle this request. Examples = pt-br, en-us",
+              "description": "Locale to be used. Locales used the following format [language]-[country]. If omitted, Smart Canvas will use the default locale to handle this request. Examples = pt-br, en-us",
               "required": false,
               "type": "string"
             },
             {
               "name": "limit",
               "paramType": "query",
-              "description": "Maximum number of cards to retrieve. If ommited, Smart Canvas will use the default page size configured for this tenant. Maximum value for this attribute is 100. Example: 10",
+              "description": "Maximum number of cards to retrieve. If omitted, Smart Canvas will use the default page size configured for this tenant. Maximum value for this attribute is 100. Example: 10",
               "required": false,
               "type": "integer",
               "format": "int32",
@@ -131,7 +131,7 @@
             {
               "name": "offset",
               "paramType": "query",
-              "description": "Offset to be applied to the result set. If ommited, offset = 0.",
+              "description": "Offset to be applied to the result set. If omitted, offset = 0.",
               "required": false,
               "type": "integer",
               "format": "int32",
@@ -230,14 +230,14 @@
             {
               "name": "fields",
               "paramType": "query",
-              "description": "Comma-separated fields to include in the response. If ommited, the response will contain all fields. See documentation for possible values. Example = title,summary,content.",
+              "description": "Comma-separated fields to include in the response. If omitted, the response will contain all fields. See documentation for possible values. Example = title,summary,content.",
               "required": false,
               "type": "string"
             },
             {
               "name": "embed",
               "paramType": "query",
-              "description": "Comma-separated list of related entities to include in the response. If ommited, the response will contain all entities. See Card response structure for possible values. Examples = author, contentProvider, attachments, userActivities, permission, locale.",
+              "description": "Comma-separated list of related entities to include in the response. If omitted, the response will contain all entities. See Card response structure for possible values. Examples = author, contentProvider, attachments, userActivities, permission, locale.",
               "required": false,
               "type": "string"
             },
@@ -345,14 +345,14 @@
             {
               "name": "fields",
               "paramType": "query",
-              "description": "Comma-separated fields to be considered in the update process. If ommited, all fields will be updated. See documentation for possible values. Examples = title,summary,content.",
+              "description": "Comma-separated fields to be considered in the update process. If omitted, all fields will be updated. See documentation for possible values. Examples = title,summary,content.",
               "required": false,
               "type": "string"
             },
             {
               "name": "embed",
               "paramType": "query",
-              "description": "Comma-separated list of related entities to be updated. If ommited, all entities will be updated. See documentation for possible values. Examples = author, contentProvider, attachments, userActivities, permission, locale.",
+              "description": "Comma-separated list of related entities to be updated. If omitted, all entities will be updated. See documentation for possible values. Examples = author, contentProvider, attachments, userActivities, permission, locale.",
               "required": false,
               "type": "string"
             },

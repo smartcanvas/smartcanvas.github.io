@@ -55,22 +55,29 @@
             {
               "name": "locale",
               "paramType": "query",
-              "description": "Locale for which this bucket should be visible. If ommited, will be visible to all locales.",
+              "description": "Locale for which this bucket should be visible. If omitted, will be visible to all locales.",
               "required": false,
               "type": "string"
 
             },
             {
-              "name": "query",
+              "name": "q",
               "paramType": "query",
-              "description": "Query term or mnemonic to be used to get content for this bucket.",
-              "required": true,
+              "description": "Query term to be used to get content for this bucket.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "m",
+              "paramType": "query",
+              "description": "Query mnemonic to be used to get content for this bucket.",
+              "required": false,
               "type": "string"
             },
             {
               "name": "pos",
               "paramType": "query",
-              "description": "The position that this bucket should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the context.",
+              "description": "The position that this bucket should be placed. First position = 1. If omitted, Smart Canvas will append to the end of the context.",
               "required": false,
               "type": "integer",
               "format": "int32",
@@ -82,6 +89,14 @@
               "description": "Bucket title. This value supports i18n.",
               "required": false,
               "type": "string"
+            },
+            {
+              "name": "titleVisible",
+              "paramType": "query",
+              "description": "If the title is visible or not",
+              "required": false,
+              "defaultValue": "true",
+              "type": "boolean"
             },
             {
               "name": "titleAlign",
@@ -114,7 +129,12 @@
               "paramType": "query",
               "description": "Bucket Canvas mnemonic to render this bucket",
               "required": false,
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "regular",
+                "featured",
+                "tall"
+              ]
             },
             {
               "name": "highlightFirstCard",
@@ -124,14 +144,6 @@
               "required": false,
               "type": "boolean",
               "defaultValue": "false"
-            },
-            {
-              "name": "limit",
-              "paramType": "query",
-              "description": "Maximum number of cards to be shown in this bucket.",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
             },
             {
               "name": "jsonExtendedData",
@@ -180,7 +192,7 @@
             {
               "name": "locale",
               "paramType": "query",
-              "description": "Locale to be used as filter. If ommited, all buckets will be returned.",
+              "description": "Locale to be used as filter. If omitted, all buckets will be returned.",
               "required": false,
               "type": "string"
             }
@@ -283,22 +295,29 @@
             {
               "name": "locale",
               "paramType": "query",
-              "description": "Locale for which this bucket should be visible. If ommited, will be visible to all locales.",
+              "description": "Locale for which this bucket should be visible. If omitted, will be visible to all locales.",
               "required": false,
               "type": "string"
 
             },
             {
-              "name": "query",
+              "name": "q",
               "paramType": "query",
-              "description": "Query term or mnemonic to be used to get content for this bucket.",
-              "required": true,
+              "description": "Query term to be used to get content for this bucket.",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "m",
+              "paramType": "query",
+              "description": "Query mnemonic to be used to get content for this bucket.",
+              "required": false,
               "type": "string"
             },
             {
               "name": "pos",
               "paramType": "query",
-              "description": "The position that this bucket should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the context.",
+              "description": "The position that this bucket should be placed. First position = 1. If omitted, Smart Canvas will append to the end of the context.",
               "required": false,
               "type": "integer",
               "format": "int32"
@@ -309,6 +328,14 @@
               "description": "Bucket title. This value supports i18n.",
               "required": false,
               "type": "string"
+            },
+            {
+              "name": "titleVisible",
+              "paramType": "query",
+              "description": "If the title is visible or not",
+              "required": false,
+              "defaultValue": "true",
+              "type": "boolean"
             },
             {
               "name": "titleAlign",
@@ -341,7 +368,12 @@
               "paramType": "query",
               "description": "Bucket Canvas mnemonic to render this bucket",
               "required": false,
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "regular",
+                "featured",
+                "tall"
+              ]
             },
             {
               "name": "highlightFirstCard",
@@ -351,14 +383,6 @@
               "required": false,
               "type": "boolean",
               "defaultValue": "false"
-            },
-            {
-              "name": "limit",
-              "paramType": "query",
-              "description": "Maximum number of cards to be shown in this bucket.",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
             },
             {
               "name": "jsonExtendedData",
@@ -475,16 +499,35 @@
               "type": "string"
             },
             {
+              "name": "href",
+              "paramType": "query",
+              "description": "HREF to be triggered if this tab",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "target",
+              "paramType": "query",
+              "description": "Same window or different window",
+              "required": false,
+              "type": "string",
+              "enum": [
+                "self",
+                "blank"
+              ],
+              "defaultValue": "self"
+            },
+            {
               "name": "pos",
               "paramType": "query",
-              "description": "The position that this tab should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the tabs.",
+              "description": "The position that this tab should be placed. First position = 1. If omitted, Smart Canvas will append to the end of the tabs.",
               "required": false,
               "type": "string"
             },
             {
               "name": "locale",
               "paramType": "query",
-              "description": "The locale to which this tab should be created / redefined. If ommited, will be visible to all locales.",
+              "description": "The locale to which this tab should be created / redefined. If omitted, will be visible to all locales.",
               "required": false,
               "type": "string"
             },
@@ -635,16 +678,35 @@
               "type": "string"
             },
             {
+              "name": "href",
+              "paramType": "query",
+              "description": "HREF to be triggered if this tab",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "target",
+              "paramType": "query",
+              "description": "Same window or different window",
+              "required": false,
+              "type": "string",
+              "enum": [
+                "self",
+                "blank"
+              ],
+              "defaultValue": "self"
+            },
+            {
               "name": "pos",
               "paramType": "query",
-              "description": "The position that this tab should be placed. First position = 1. If ommited, Smart Canvas will append to the end of the tabs.",
+              "description": "The position that this tab should be placed. First position = 1. If omitted, Smart Canvas will append to the end of the tabs.",
               "required": false,
               "type": "string"
             },
             {
               "name": "locale",
               "paramType": "query",
-              "description": "The locale to which this tab should be created / redefined. If ommited, will be visible to all locales.",
+              "description": "The locale to which this tab should be created / redefined. If omitted, will be visible to all locales.",
               "required": false,
               "type": "string"
             },
@@ -1095,13 +1157,21 @@
           "type": "integer",
           "description": "The position that this bucket should be placed. First position = 1."
         },
-        "query": {
+        "q": {
+          "type": "string",
+          "description": "Query to be used to get content for this bucket."
+        },
+        "m": {
           "type": "string",
           "description": "Query mnemonic to be used to get content for this bucket."
         },
         "title": {
           "type": "string",
           "description": "Bucket title. This value supports i18n."
+        },
+        "titleVisible": {
+          "type": "boolean",
+          "description": "If the title is visible or not"
         },
         "titleAlign": {
           "type": "string",
@@ -1122,10 +1192,6 @@
         "highlightFirstCard": {
           "type": "boolean",
           "description": "If the first card should be highlighted or not"
-        },
-        "limit": {
-          "type": "integer",
-          "description": "Maximum number of cards to be shown in this bucket. If not set, Smart Canvas will incremental load the content. If set and the number of cards exceeds this value, Smart Canvas will render the 'See More button."
         },
         "jsonExtendedData": {
           "type": "string",
@@ -1152,15 +1218,17 @@
           "type": "string",
           "description": "The context for this tab."
         },
+        "href": {
+          "type": "string",
+          "description": "HREF for this tab"
+        },
+        "target": {
+          "type": "string",
+          "description": "Target for this tab"
+        },
         "pos": {
           "type": "integer",
           "description": "The position that this tab should be placed. First position = 1."
-        },
-        "buckets": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         },
         "jsonExtendedData": {
           "type": "string",
