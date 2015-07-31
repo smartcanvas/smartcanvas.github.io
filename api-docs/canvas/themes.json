@@ -276,6 +276,14 @@
               "required": true
             },
             {
+              "name": "isDefault",
+              "paramType": "query",
+              "description": "If this theme is default or not",
+              "type": "boolean",
+              "required": true,
+              "defaultValue": "false"
+            },
+            {
               "name": "primaryPaletteId",
               "paramType": "query",
               "description": "The primary color palette mnemonic",
@@ -576,6 +584,10 @@
         "id": {
           "type": "string",
           "description": "Theme mnemonic"
+        },
+        "isDefault": {
+          "type": "boolean",
+          "description": "If this theme is default"
         },
         "primaryPalette": {
           "type": "ColorPalette",
