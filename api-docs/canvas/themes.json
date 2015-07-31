@@ -564,7 +564,7 @@
           "type": "string",
           "description": "Contrast to be used for fonts",
           "enum": [
-            "light",
+            "white",
             "dark"
           ]
         }
