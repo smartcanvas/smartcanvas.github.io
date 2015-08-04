@@ -312,6 +312,20 @@
               "required": true
             },
             {
+              "name": "toolbarColor",
+              "paramType": "query",
+              "description": "Toolbar color",
+              "type": "Color",
+              "required": false
+            },
+            {
+              "name": "tabbarColor",
+              "paramType": "query",
+              "description": "Tabbar color",
+              "type": "Color",
+              "required": false
+            },
+            {
               "name": "primaryFont",
               "paramType": "query",
               "description": "Primary font name. Used for titles. Example: Roboto",
@@ -472,6 +486,20 @@
               "required": true
             },
             {
+              "name": "toolbarColor",
+              "paramType": "query",
+              "description": "Toolbar color",
+              "type": "Color",
+              "required": false
+            },
+            {
+              "name": "tabbarColor",
+              "paramType": "query",
+              "description": "Tabbar color",
+              "type": "Color",
+              "required": false
+            },
+            {
               "name": "primaryFont",
               "paramType": "query",
               "description": "Primary font name. Used for titles. Example: Roboto",
@@ -578,6 +606,23 @@
         }
       }
     },
+    "Color": {
+      "id": "Color",
+      "properties": {
+        "value": {
+          "type": "color",
+          "description": "The color code. Must include #. Examples: #F44336, #FFFFFF etc"
+        },
+        "contrast": {
+          "type": "string",
+          "description": "Contrast to be used for fonts",
+          "enum": [
+            "white",
+            "dark"
+          ]
+        }
+      }
+    },
     "Theme": {
       "id": "Theme",
       "properties": {
@@ -604,6 +649,14 @@
         "backgroundPalette": {
           "type": "ColorPalette",
           "description": "The background color palette mnemonic"
+        },
+        "toolbarColor": {
+          "type": "Color",
+          "description": "Color to be applied to the toolbar. It's optional."
+        },
+        "tabbarColor": {
+          "type": "Color",
+          "description": "Color to be applied to the tab bar. It's optional."
         },
         "primaryFont": {
           "type": "string",

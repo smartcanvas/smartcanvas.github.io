@@ -21,3 +21,6 @@ local_db.bin
 # IntelliJ
 *.iml
 
+.idea
+.idea/*
+
