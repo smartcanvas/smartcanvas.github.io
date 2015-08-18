@@ -326,6 +326,13 @@
               "required": false
             },
             {
+              "name": "menubarColor",
+              "paramType": "query",
+              "description": "Menubar color",
+              "type": "Color",
+              "required": false
+            },
+            {
               "name": "primaryFont",
               "paramType": "query",
               "description": "Primary font name. Used for titles. Example: Roboto",
@@ -500,6 +507,13 @@
               "required": false
             },
             {
+              "name": "menubarColor",
+              "paramType": "query",
+              "description": "Menubar color",
+              "type": "Color",
+              "required": false
+            },
+            {
               "name": "primaryFont",
               "paramType": "query",
               "description": "Primary font name. Used for titles. Example: Roboto",
@@ -657,6 +671,10 @@
         "tabbarColor": {
           "type": "Color",
           "description": "Color to be applied to the tab bar. It's optional."
+        },
+        "menubarColor": {
+          "type": "Color",
+          "description": "Color to be applied to the menu bar. It's optional."
         },
         "primaryFont": {
           "type": "string",
